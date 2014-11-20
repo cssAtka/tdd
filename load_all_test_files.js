@@ -2,7 +2,7 @@ var fs = require('fs'),
 	async = require('async');
 
 var result = [],
-	fileRegex = /\.js$/;
+	fileRegex = /^(?!.*setup).*\.js$/;
 
 var queue = async.queue(function(item, done) {
 	fs.stat(item, function(err, stat) {
@@ -18,6 +18,7 @@ var queue = async.queue(function(item, done) {
 			});
 		}
 		else if (fileRegex.test(item)) {
+			console.log('Loading file ' + item);
 			result.push(item);
 		}
 
