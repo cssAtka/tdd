@@ -39,7 +39,14 @@ suite('testing autosuggest view', function() {
 
 		var suggestions = this.autosuggestBox.find('p');
 		assert.lengthOf(suggestions, testResponse[data].length);
+/*
+var x = $('.box').find('p');
+var arr = [];
+for(i=0;i<x.length;i++){
 
+arr[i] = x[i].innerHTML
+}
+*/
 		//assert.deepEqual(suggestions.text(), testResponse[data]);
 	});
 });
