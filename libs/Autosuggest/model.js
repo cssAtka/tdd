@@ -14,11 +14,10 @@ var Backbone = require('backbone'),
 			/**
 			 * @default
 			 */
-			default: {
+			default : {
 				wordList : []
 			},
-
-			url : '/autosuggest/getList'
+			url     : '/autosuggest/getList'
 		}
 	);
 

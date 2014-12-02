@@ -21,23 +21,21 @@ var Backbone = require('backbone'),
 				'keyup @ui.autosuggestInput' : 'onKeyUp'
 			},
 
-			/**
-			 * @class ChatView
-			 * @constructs
-			 * @extends external:Backbone.Marionette.CompositeView
-			 */
 			initialize : function() {
 				this.listenTo(this.model, 'change', this.render);
 			},
 
 			/**
-			 * Handles message send button click
+			 * Handles keyUp event
 			 */
 			onKeyUp : function() {
 				this.resetList();
 				this.searchInList();
 			},
 
+			/**
+			 * After keyup we send the input value to model
+			 */
 			searchInList : function() {
 				var inputElement = this.$(this.ui.autosuggestInput),
 					searchText = inputElement.val();
@@ -46,16 +44,26 @@ var Backbone = require('backbone'),
 				}
 			},
 
+			/**
+			 * Runs after render. It appends the hit list to the main element.
+			 */
 			render : function() {
 				var i = 0,
 					wordList = this.model.attributes.wordList;
-				for (; i < wordList.length; i++) {
+				if (wordList.length > 0) {
+					this.$(this.ui.autosuggestBox).addClass('show');
+					for (; i < wordList.length; i++) {
 						this.$(this.ui.autosuggestBox).append('<p>' + wordList[i] + '</p>');
+					}
 				}
 			},
 
+			/**
+			 * Reset the hit list
+			 */
 			resetList : function() {
 				this.$(this.ui.autosuggestBox).html('');
+				this.$(this.ui.autosuggestBox).removeClass('show');
 			}
 		}
 	);
