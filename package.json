@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run-script all-test",
-    "all-test": "npm run-script coverage && npm run-script bundle",
+    "all-test": "npm run-script jscs && npm run-script coverage && npm run-script bundle",
     "browser_test": "npm run-script generate_loader && npm run-script bundle",
     "mocha": "node_modules\\.bin\\mocha -u tdd -R spec -r tests/setup_jsdom.js tests/**/*.js",
     "generate_loader": "node load_all_test_files.js",
